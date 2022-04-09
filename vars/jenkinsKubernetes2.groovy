@@ -26,6 +26,7 @@ environment {
 				 script{
 				  customImage= sh 'docker build -t "$registry:$dockerTag" .'
 					 echo "$registryCredential"
+					 echo "$customImage"
 				 }
 				 
 			} 
