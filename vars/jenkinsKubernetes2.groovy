@@ -35,7 +35,7 @@ environment {
        agent{label 'docker'}
 			 steps { 
 				 script {
-					 docker.withRegistry( '', $registryCredential )
+					 docker.withRegistry( '', registryCredential )
 				 }
 				 sh 'docker push "registry:$dockerTag"'		
 			} 
