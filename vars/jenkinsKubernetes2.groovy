@@ -34,10 +34,11 @@ environment {
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
-				 script {
-					 docker.withRegistry( '', registryCredential ) { 
-			                        dockerImage.push() 
-                    			}
+				 sh 'docker push keerthana2022/k8s:$dockerTag'
+				 //script {
+					// docker.withRegistry( '', registryCredential ) { 
+			                    //    dockerImage.push() 
+                    			//}
                 		}		
 			} 
 		}
