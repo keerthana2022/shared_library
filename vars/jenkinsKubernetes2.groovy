@@ -23,7 +23,9 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				  sh 'docker build -t "$registry:$dockerTag" .'
+				  //sh 'docker build -t "$registry:$dockerTag" .'
+				 customImage = docker.build("$registry:$dockerTag")
+				 
 				 //script { 
 					// dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
 					
@@ -35,7 +37,13 @@ environment {
        agent{label 'docker'}
 			 steps { 
 				 
-				 sh 'docker push keerthana2022/k8s:$dockerTag'	
+				 //sh 'docker push keerthana2022/k8s:$dockerTag'	
+				 script{
+				 docker.withRegistry(' ', 'registryCredential') {
+
+                                  customImage.push()
+					 
+				 }
 			} 
 		}
 					
