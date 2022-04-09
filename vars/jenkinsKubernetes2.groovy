@@ -23,11 +23,10 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				 script{
-				  customImage= sh 'docker build -t "$registry:$dockerTag" .'
-					 echo "$registryCredential"
-					 echo "customImage"
-				 }
+				 
+				  sh 'docker build -t "$registry:$dockerTag" .'
+					 
+				 
 				 
 			} 
 		}
@@ -36,13 +35,8 @@ environment {
        agent{label 'docker'}
 			 steps { 
 				 
-				 //sh 'docker push keerthana2022/k8s:$dockerTag'	
-				 script{
-				 docker.withRegistry(' ', 'registryCredential') {
-                                                          customImage.push()
-				 }
-					 
-				 }
+				 sh 'docker push $registry:$dockerTag'	
+				 
 			} 
 		}
 					
