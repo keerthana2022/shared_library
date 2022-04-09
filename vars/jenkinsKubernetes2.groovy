@@ -34,11 +34,7 @@ environment {
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
-				 script {
-					 docker.withRegistry( '', registryCredential ) { 
-			                        dockerImage.push() 
-                    			}
-                		}		
+				 sh 'docker push registry:$dockerTag'		
 			} 
 		}
 					
