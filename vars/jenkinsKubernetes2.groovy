@@ -23,20 +23,20 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				 sh 'docker build -t keerthana2022/k8s:$dockerTag .'
-				 
-				 //script { 
-				//	 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
-				 //}
+				 script { 
+					 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
+				 }
 			} 
 		}
 					
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
-				 sh 'docker push keerthana2022/k8s:$dockerTag'
-				 
-                			
+				 script {
+					 docker.withRegistry( '', registryCredential ) { 
+			                        dockerImage.push() 
+                    			}
+                		}		
 			} 
 		}
 					
