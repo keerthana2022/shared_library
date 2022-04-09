@@ -4,7 +4,7 @@ pipeline {
 environment { 
 		registryCredential = "${registryCred}"
 		registry = "$registryin" 	
-		dockerTag = "${docTag}$BUILD_NUMBER"
+		dockerTag = "${docTag}"
 		gitRepo = "${grepo}"
 		gitBranch = "${gbranch}"
 		}
