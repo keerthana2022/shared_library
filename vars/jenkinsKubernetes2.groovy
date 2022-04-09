@@ -36,7 +36,7 @@ environment {
 				 
 				 //sh 'docker push keerthana2022/k8s:$dockerTag'	
 				 script{
-				 docker.withRegistry(' ', '$registryCredential') {
+				 docker.withRegistry('https://hub.docker.com', 'registryCredential') {
                                                           customImage.push()
 				 }
 					 
