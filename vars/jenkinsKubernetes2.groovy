@@ -1,4 +1,4 @@
-def call(String registryCred = 'a', String registryin = 'a', String docTag = 'a', String grepo = 'a', String gbranch = 'a', String gitcred = 'a') {
+def call(String registryCred = 'a', String registryin = 'a', String docTag = 'a', String grepo = 'a', String gbranch = 'a') {
 
 pipeline {
 environment { 
@@ -7,8 +7,7 @@ environment {
 		dockerTag = "${docTag}$BUILD_NUMBER"
 		gitRepo = "${grepo}"
 		gitBranch = "${gbranch}"
-		gitCredId = "${gitcred}"
-	}
+		}
 		
 	agent none
 	
