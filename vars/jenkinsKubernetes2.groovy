@@ -34,10 +34,8 @@ environment {
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
-				 script {
-					 docker.withRegistry( '', registryCredential )
-				 }
-				 sh 'docker push "registry:$dockerTag"'		
+				 
+				 sh 'docker push keerthana2022/k8s:$dockerTag'	
 			} 
 		}
 					
