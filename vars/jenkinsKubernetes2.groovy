@@ -3,7 +3,7 @@ def call(String registryCred = 'a', String registryin = 'a', String docTag = 'a'
 pipeline {
 environment { 
 		registryCredential = "${registryCred}"
-		registry = "$registryin" 	
+	        registry = "${registryin}" 	
 		dockerTag = "${docTag}$BUILD_NUMBER"
 		gitRepo = "${grepo}"
 		gitBranch = "${gbranch}"
@@ -23,9 +23,11 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				 script { 
-					 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
-				 }
+				  sh 'docker build -t "registry:$dockerTag" .'
+				 //script { 
+					// dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
+					
+				 //}
 			} 
 		}
 					
