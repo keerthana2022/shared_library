@@ -23,9 +23,11 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				 script { 
-					 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
-				 }
+				 sh 'docker build -t keerthana2022/k8s:$dockerTag .'
+				 
+				 //script { 
+				//	 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
+				 //}
 			} 
 		}
 					
