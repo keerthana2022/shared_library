@@ -23,8 +23,9 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				 
+				 script{
 				  customImage= sh 'docker build -t "$registry:$dockerTag" .'
+				 }
 				 
 			} 
 		}
