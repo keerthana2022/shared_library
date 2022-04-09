@@ -35,11 +35,8 @@ environment {
        agent{label 'docker'}
 			 steps { 
 				 sh 'docker push keerthana2022/k8s:$dockerTag'
-				 //script {
-					// docker.withRegistry( '', registryCredential ) { 
-			                    //    dockerImage.push() 
-                    			//}
-                		}		
+				 
+                			
 			} 
 		}
 					
