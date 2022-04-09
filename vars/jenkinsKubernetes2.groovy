@@ -42,6 +42,7 @@ environment {
 				 docker.withRegistry(' ', 'registryCredential') {
 
                                   customImage.push()
+				 }
 					 
 				 }
 			} 
