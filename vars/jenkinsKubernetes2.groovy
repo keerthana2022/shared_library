@@ -1,8 +1,9 @@
-def call(String registryCred = 'a', String registryin = 'a', String docTag = 'a', String grepo = 'a', String gbranch = 'a', String gitcred = 'a') {
+def call(String username = 'a', String password ='a' , String registryin = 'a', String docTag = 'a', String grepo = 'a', String gbranch = 'a', String gitcred = 'a') {
 
 pipeline {
 environment { 
-		registryCredential = "${registryCred}"
+		docusername = "${username}"
+	        docpassword = "${password}"
 	        registry = "${registryin}" 	
 		dockerTag = "${docTag}$BUILD_NUMBER"
 		gitRepo = "${grepo}"
@@ -23,10 +24,8 @@ environment {
 		stage('BUILD IMAGE') {
        agent{label 'docker'}
 			 steps { 
-				 script { 
-					 dockerimage = dockerImage = docker.build registry + ":${dockerTag}" 
-				 }
-				 // sh 'docker build -t "$registry:$dockerTag" .'
+				 
+				 sh 'docker build -t "$registry:$dockerTag" .'
 					 
 				 
 				 
@@ -36,12 +35,9 @@ environment {
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
-				 script {
-					 docker.withRegistry( '', registryCredential ) { 
-			                        dockerImage.push() 
-                    			}
-                		}
-				// sh 'docker push $registry:$dockerTag'	
+				 sh 'docker login --username="${docusername}" --password="${docpassword}" '
+				 sh ' sleep 5'
+				 sh 'docker push $registry:$dockerTag'	
 				 
 			} 
 		}
