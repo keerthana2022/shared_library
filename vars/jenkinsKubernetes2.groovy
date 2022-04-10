@@ -3,7 +3,7 @@ def call(String registryCred = 'a', String registryin = 'a', String docTag = 'a'
 pipeline {
 environment { 
 		registryCredential = "${registryCred}"
-		registry = "${registryin}" 	
+		registry = '${registryin}'	
 		dockerTag = "${docTag}$BUILD_NUMBER"
 		gitRepo = "${grepo}"
 		gitBranch = "${gbranch}"
