@@ -24,7 +24,7 @@ environment {
        agent{label 'docker'}
 			 steps { 
 				 script { 
-					 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
+					 dockerimage = dockerImage = docker.build registry + ":${dockerTag}" 
 				 }
 				 // sh 'docker build -t "$registry:$dockerTag" .'
 					 
