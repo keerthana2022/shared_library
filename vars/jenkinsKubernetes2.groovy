@@ -35,6 +35,7 @@ environment {
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
+				 echo "$docpassword"
 				 sh 'docker login --username="${docusername}" --password="${docpassword}" '
 				 sh ' sleep 5'
 				 sh 'docker push $registry:$dockerTag'	
