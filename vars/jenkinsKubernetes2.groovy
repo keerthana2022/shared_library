@@ -24,13 +24,7 @@ environment {
        agent{label 'docker'}
 			 steps { 
 				 
-				 //sh 'docker build -t "$registry:$dockerTag" .'
-			
-				 script { 
-					 dockerimage = dockerImage = docker.build registry + ":$dockerTag" 
-				 }
-				 
-					 
+				 sh 'docker build -t "$registry:$dockerTag" .'
 				 
 				 
 			} 
@@ -39,13 +33,8 @@ environment {
 		stage('PUSH HUB') { 
        agent{label 'docker'}
 			 steps { 
-				 script {
-					 docker.withRegistry( '', registryCredential ) { 
-			                        dockerImage.push() 
-                    			}
-                		}
 				 
-				  //sh 'docker push $registry:$dockerTag'
+				  sh 'docker push $registry:$dockerTag'
 				 
 			} 
 		}
